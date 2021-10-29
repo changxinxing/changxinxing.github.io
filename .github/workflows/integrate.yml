@@ -1,8 +1,8 @@
 name: Build and Deploy
 on:
   push:
-    branches:
-    -main
+  branches:
+  - main
 jobs:
   build-and-deploy:
     runs-on: windows-latest
@@ -13,9 +13,7 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
-        with:
-          persist-credentials: false
-
+        
       - name: Cache  💾
         uses: actions/cache@v2
         with:
@@ -26,9 +24,7 @@ jobs:
         uses: actions/setup-node@v1
       - run: npm install
       - run: npm run build
-        env:
-            CI: true
-
+        
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
